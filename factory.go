@@ -1,0 +1,43 @@
+package writer
+
+import (
+	"fmt"
+	"io"
+	"sort"
+
+	"github.com/gopi-frame/collection/kv"
+	"github.com/gopi-frame/exception"
+	"github.com/gopi-frame/writer/driver"
+)
+
+var drivers = kv.NewMap[string, driver.Driver]()
+
+// Register register driver
+func Register(driverName string, driver driver.Driver) {
+	drivers.Lock()
+	defer drivers.Unlock()
+	if drivers.ContainsKey(driverName) {
+		panic(exception.NewArgumentException("driverName", driverName, fmt.Sprintf("duplicate driver \"%s\"", driverName)))
+	}
+	drivers.Set(driverName, driver)
+}
+
+// Drivers list registered drivers
+func Drivers() []string {
+	drivers.RLock()
+	defer drivers.RUnlock()
+	list := drivers.Keys()
+	sort.Strings(list)
+	return list
+}
+
+// Open open writer
+func Open(driverName string, options map[string]any) (io.WriteCloser, error) {
+	drivers.RLock()
+	driver, ok := drivers.Get(driverName)
+	drivers.RUnlock()
+	if !ok {
+		return nil, exception.NewArgumentException("driverName", driverName, fmt.Sprintf("unknown driver \"%s\"", driverName))
+	}
+	return driver.Open(options)
+}
