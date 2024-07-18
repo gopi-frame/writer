@@ -3,8 +3,8 @@ package lumberjack
 import (
 	"io"
 
+	"github.com/go-viper/mapstructure/v2"
 	"github.com/gopi-frame/writer"
-	"github.com/mitchellh/mapstructure"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 

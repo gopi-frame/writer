@@ -6,6 +6,7 @@ import (
 	"github.com/gopi-frame/writer"
 )
 
+// This variable can be replaced through `go build -ldflags=-X github.com/gopi-frame/writer/file.driverName=custom`
 var driverName = "file"
 
 func init() {

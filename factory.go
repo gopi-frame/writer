@@ -6,14 +6,14 @@ import (
 	"sort"
 
 	"github.com/gopi-frame/collection/kv"
+	"github.com/gopi-frame/contract/writer"
 	"github.com/gopi-frame/exception"
-	"github.com/gopi-frame/writer/driver"
 )
 
-var drivers = kv.NewMap[string, driver.Driver]()
+var drivers = kv.NewMap[string, writer.Driver]()
 
 // Register register driver
-func Register(driverName string, driver driver.Driver) {
+func Register(driverName string, driver writer.Driver) {
 	drivers.Lock()
 	defer drivers.Unlock()
 	if drivers.ContainsKey(driverName) {
