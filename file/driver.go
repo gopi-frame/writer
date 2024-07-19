@@ -9,6 +9,7 @@ import (
 // This variable can be replaced through `go build -ldflags=-X github.com/gopi-frame/writer/file.driverName=custom`
 var driverName = "file"
 
+//goland:noinspection GoBoolExpressions
 func init() {
 	if driverName != "" {
 		writer.Register(driverName, new(Driver))

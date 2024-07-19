@@ -31,7 +31,7 @@ func Drivers() []string {
 	return list
 }
 
-// Open open writer
+// Open opens writer
 func Open(driverName string, options map[string]any) (io.WriteCloser, error) {
 	drivers.RLock()
 	driver, ok := drivers.Get(driverName)

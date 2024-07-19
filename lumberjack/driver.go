@@ -8,8 +8,10 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
+// This variable can be replaced through `go build -ldflags=-X github.com/gopi-frame/writer/lumberjack.driverName=custom`
 var driverName = "lumberjack"
 
+//goland:noinspection GoBoolExpressions
 func init() {
 	if driverName != "" {
 		writer.Register(driverName, new(Driver))

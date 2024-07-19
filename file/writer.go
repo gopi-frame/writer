@@ -7,8 +7,8 @@ import (
 	"github.com/gopi-frame/exception"
 )
 
-func NewFileWriter(config *Config) (*FileWriter, error) {
-	w := &FileWriter{
+func NewFileWriter(config *Config) (*Writer, error) {
+	w := &Writer{
 		Config: config,
 	}
 	err := w.Open()
@@ -18,12 +18,12 @@ func NewFileWriter(config *Config) (*FileWriter, error) {
 	return w, nil
 }
 
-type FileWriter struct {
+type Writer struct {
 	*Config
 	*os.File
 }
 
-func (w *FileWriter) Open() error {
+func (w *Writer) Open() error {
 	if w.Config.File == "" {
 		return exception.New("file can't be empty")
 	}
