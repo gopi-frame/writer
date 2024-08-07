@@ -1,4 +1,4 @@
-module github.com/gopi-frame/writer/file
+module github.com/gopi-frame/writer/driver/file
 
 go 1.22.2
 

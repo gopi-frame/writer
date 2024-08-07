@@ -7,7 +7,14 @@ import (
 	"github.com/gopi-frame/exception"
 )
 
-func NewFileWriter(config *Config) (*Writer, error) {
+// Writer is a file writer
+type Writer struct {
+	*Config
+	*os.File
+}
+
+// NewWriter creates a new file writer
+func NewWriter(config *Config) (*Writer, error) {
 	w := &Writer{
 		Config: config,
 	}
@@ -18,11 +25,7 @@ func NewFileWriter(config *Config) (*Writer, error) {
 	return w, nil
 }
 
-type Writer struct {
-	*Config
-	*os.File
-}
-
+// Open opens file writer
 func (w *Writer) Open() error {
 	if w.Config.File == "" {
 		return exception.New("file can't be empty")

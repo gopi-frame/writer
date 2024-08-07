@@ -16,12 +16,19 @@ func init() {
 	}
 }
 
+// Driver is a file writer driver
 type Driver struct{}
 
-func (d Driver) Open(options map[string]any) (io.WriteCloser, error) {
+// Open opens file writer
+func (Driver) Open(options map[string]any) (io.WriteCloser, error) {
 	config, err := UnmarshalOptions(options)
 	if err != nil {
 		return nil, err
 	}
-	return NewFileWriter(config)
+	return NewWriter(config)
+}
+
+// Open is a convenience function that calls [Driver.Open].
+func Open(options map[string]any) (io.WriteCloser, error) {
+	return new(Driver).Open(options)
 }
