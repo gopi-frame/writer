@@ -19,3 +19,16 @@ comment:
   layout: "diff, flags, files"
   behavior: default
   require_changes: false
+flags:
+  file:
+    carryforward: true
+    paths:
+      - "./driver/file/*"
+  lumberjack:
+    carryforward: true
+    paths:
+      - "./driver/lumberjack/*"
+  writer:
+    carryforward: true
+    paths:
+      - "./*"
