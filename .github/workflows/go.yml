@@ -32,22 +32,6 @@ jobs:
           flags: writer
           codecov_yml_path: ./.codecov.yml
 
-      - name: Test driver file
-        working-directory: ./driver/file
-        run: |
-          go mod tidy
-          go test -v -coverprofile=coverage.out ./...
-
-      - name: Upload driver file coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./driver/file/coverage.out
-          fail_ci_if_error: true
-          verbose: true
-          flags: file
-          codecov_yml_path: ./.codecov.yml
-
       - name: Test driver lumberjack
         working-directory: ./driver/lumberjack
         run: |
