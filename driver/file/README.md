@@ -14,17 +14,19 @@ go get -u -v github.com/gopi-frame/writer/driver/file
 
 # Import
 ```go
-import "github.com/gopi-frame/writer/driver/file"
+import _ "github.com/gopi-frame/writer/driver/file"
 ```
 
 # Usage
+
+Use `file` as driver name and valid options as below.
 
 ```go
 package main
 
 import (
     "github.com/gopi-frame/writer"
-    "github.com/gopi-frame/writer/driver/file"
+    _ "github.com/gopi-frame/writer/driver/file"
 )
 
 func main() {

@@ -16,6 +16,9 @@ var drivers = kv.NewMap[string, writer.Driver]()
 func Register(driverName string, driver writer.Driver) {
 	drivers.Lock()
 	defer drivers.Unlock()
+	if driver == nil {
+		panic(exception.NewEmptyArgumentException("driver"))
+	}
 	if drivers.ContainsKey(driverName) {
 		panic(exception.NewArgumentException("driverName", driverName, fmt.Sprintf("duplicate driver \"%s\"", driverName)))
 	}

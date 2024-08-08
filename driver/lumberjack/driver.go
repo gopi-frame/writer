@@ -18,8 +18,10 @@ func init() {
 	}
 }
 
+// Driver is a lumberjack writer driver
 type Driver struct{}
 
+// Open opens lumberjack writer
 func (d Driver) Open(options map[string]any) (io.WriteCloser, error) {
 	logger := new(lumberjack.Logger)
 	err := mapstructure.WeakDecode(options, logger)
@@ -27,4 +29,9 @@ func (d Driver) Open(options map[string]any) (io.WriteCloser, error) {
 		return nil, err
 	}
 	return logger, nil
+}
+
+// Open is a convenience function that calls [Driver.Open].
+func Open(options map[string]any) (io.WriteCloser, error) {
+	return new(Driver).Open(options)
 }
