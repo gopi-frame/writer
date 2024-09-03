@@ -35,7 +35,7 @@ func main() {
     w, err := writer.Open("lumberjack", map[string]any{
         "filename": "data.txt",
         "maxSize": 100,
-        "maxAge": 7
+        "maxAge": 7,
         "maxBackups": 10,
         "compress": true,
     })
