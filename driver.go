@@ -12,7 +12,7 @@ import (
 
 var drivers = kv.NewMap[string, writer.Driver]()
 
-// Register register driver
+// Register registers driver
 func Register(driverName string, driver writer.Driver) {
 	drivers.Lock()
 	defer drivers.Unlock()
@@ -25,7 +25,7 @@ func Register(driverName string, driver writer.Driver) {
 	drivers.Set(driverName, driver)
 }
 
-// Drivers list registered drivers
+// Drivers lists registered drivers
 func Drivers() []string {
 	drivers.RLock()
 	defer drivers.RUnlock()
